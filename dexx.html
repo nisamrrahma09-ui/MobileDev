@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Sederhana</title>
+
+    <style>
+        .logo{
+            display: flex;
+            font-size: 1.5rem;
+            font-weight: bold;
+            gap: 1rem;
+            align-items: center;
+        }
+        /* Selector universal */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        /* Selector tag */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fb;
+            color: #1f2937;
+        }
+
+        /* Selector class */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background-color: #1e3a8a;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Selector child */
+        .menu > li {
+            display: inline-block;
+            list-style: none;
+            margin-left: 25px;
+        }
+
+        /* Selector descendant */
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        /* Pseudo-class */
+        .menu a:hover,
+        .menu a.active {
+            color: #facc15;
+        }
+
+        /* Selector ID */
+        #home {
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 80px 8%;
+            background: linear-gradient(135deg, #dbeafe, #eff6ff);
+        }
+
+        .hero-text {
+            max-width: 550px;
+        }
+
+        .hero-text h1 {
+            font-size: 45px;
+            color: #1e3a8a;
+            margin-bottom: 20px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        /* Selector atribut */
+        a[href="#kontak"]:hover {
+            background-color: #d97706;
+            color: white;
+        }
+
+        .hero-image {
+            font-size: 140px;
+
+        }
+
+        section {
+            padding: 70px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 35px;
+            font-size: 32px;
+        }
+
+        /* Pseudo-element */
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 70px;
+            height: 4px;
+            margin: 10px auto;
+            background-color: #f59e0b;
+            border-radius: 5px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .cardds {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .cardss {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.18);
+        }
+
+        .card .icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: #1e3a8a;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            line-height: 1.6;
+            color: #64748b;
+        }
+
+        .about {
+            background-color: white;
+            text-align: center;
+        }
+
+        .about p {
+            max-width: 750px;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #1e3a8a;
+            color: white;
+        }
+
+        /* Tombol menu mobile */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* Tampilan tablet dan handphone */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .menu {
+                display: none;
+                position: absolute;
+                top: 70px;
+                right: 8%;
+                width: 200px;
+                padding: 15px;
+                background-color: #1e3a8a;
+                border-radius: 8px;
+            }
+
+            .menu.show {
+                display: block;
+            }
+
+            .menu > li {
+                display: block;
+                margin: 15px 0;
+            }
+
+            #home {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 35px;
+            }
+
+            .hero-image {
+                font-size: 90px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigasi -->
+    <nav class="navbar">
+        
+        <div class="logo">
+            <img src="Picture1.png" alt="logo smkn 1 subang" width="45" height="50"> SMKN 1 SUBANG
+        </div>
+
+        <button class="menu-toggle" id="menuToggle">
+            ☰
+        </button>
+
+        <ul class="menu" id="menu">
+            <li><a href="#home" class="active">Beranda</a></li>
+            <li><a href="#profesi">Profesi</a></li>
+            <li><a href="#skill">Skill</a></li>
+            <li><a href="#tools">Tools & Teknologi</a></li>
+        </ul>
+    </nav>
+
+    <!-- Bagian Beranda -->
+    <main>
+        <section id="home">
+            <img src="foto.mbl.png" alt="foto mobile app development" width="400" height="300">
+            <div class="hero-text">
+                <h1>Mobile App Development</h1>
+                <p>
+                    Proses perancangan, pengembangan, dan pemeliharaan aplikasi yang dirancang untuk 
+                    digunakan pada perangkat mobile, seperti smartphone dan tablet. Bidang ini mencakup 
+                    pembuatan antarmuka pengguna, penerapan berbagai fitur dan fungsi aplikasi, pengelolaan 
+                    data, serta pengujian untuk memastikan aplikasi dapat berjalan dengan baik, aman, dan 
+                    mudah digunakan.
+                </p>
+            </div>
+        </section>
+
+        <!-- Bagian Profesi -->
+        <section id="profesi">
+            <h2 class="section-title">Profesi di bidang Mobile App Development</h2>
+
+            <div class="cards">
+                <div class="card">
+                    <h3>Mobile App Developer</h3>
+                    <p>
+                        Bertugas membuat, mengembangkan, dan memperbarui aplikasi yang 
+                        digunakan pada perangkat mobile seperti smartphone dan tablet.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Android Developer</h3>
+                    <p>
+                        Bertugas mengembangkan aplikasi khusus untuk perangkat Android 
+                        menggunakan bahasa pemrograman seperti Java atau Kotlin.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>iOS Developer</h3>
+                    <p>
+                        Bertugas membuat dan mengembangkan aplikasi untuk perangkat Apple 
+                        seperti iPhone dan iPad dengan menggunakan teknologi dan bahasa 
+                        pemrograman yang sesuai.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>UI/UX Designer</h3>
+                    <p>
+                        Bertugas merancang tampilan aplikasi agar terlihat menarik, mudah digunakan, 
+                        serta memberikan pengalaman yang nyaman bagi pengguna.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Mobile App Tester / QA</h3>
+                    <p>
+                        Bertugas menguji aplikasi untuk menemukan kesalahan atau bug sebelum aplikasi 
+                        digunakan oleh pengguna secara luas.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Backend Developer</h3>
+                    <p>
+                        Bertugas membuat dan mengelola bagian belakang aplikasi, seperti server, 
+                        database, API, serta sistem yang mengatur proses dan penyimpanan data.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Product Manager</h3>
+                    <p>
+                       Bertugas mengatur proses pengembangan aplikasi, menentukan fitur yang dibutuhkan, 
+                       serta memastikan pengembangan aplikasi sesuai dengan tujuan produk.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Mobile Security Specialist</h3>
+                    <p>
+                        Bertugas menjaga keamanan aplikasi dan data pengguna dengan mencari celah keamanan 
+                        serta menerapkan sistem perlindungan agar aplikasi lebih aman.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+         <!-- Bagian Skills -->
+        <section id="skill">
+            <h2 class="section-title">Skill yang dibutuhkan dalam Mobile App Development</h2>
+            <div class="cardds">
+            
+                <div class="card">
+                    <img src="Programming.jpg" alt="Ilustrasi Programming" width="300" height="200">
+                    <p>
+                        Programming adalah kemampuan menulis kode untuk membuat fitur dan fungsi dalam aplikasi mobile.
+                        Bahasa yang sering digunakan antara lain Kotlin, Java, Swift, Dart, dan JavaScript.
+                    </p>
+                </div>
+                <div class="card">
+                    <img src="UIUX.jpg" alt="Ilustrasi UI/UX Design" width="300" height="200">
+                    <p>
+                        UI/UX Design adalah kemampuan membuat tampilan aplikasi yang menarik, mudah dipahami,
+                        dan nyaman digunakan oleh pengguna.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <img src="Database.jpg" alt="Ilustrasi Testing" width="300" height="200">
+                    <p>
+                        Database Management adalah kemampuan mengelola data yang digunakan
+                        dalam aplikasi, seperti data pengguna, produk, atau transaksi.
+                        Developer perlu memahami cara menyimpan, mengambil, dan mengubah data.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <img src="Leading API.jpg" alt="Ilustrasi Testing" width="300" height="200">
+                    <p>
+                       API Integration adalah kemampuan menghubungkan aplikasi dengan 
+                       layanan atau sistem lain. Contohnya, 
+                       aplikasi dapat mengambil data dari server menggunakan API.
+                    </p>
+                </div>  
+                
+                  <div class="card">
+                    <img src="Debugging.jpg" alt="Ilustrasi Testing" width="300" height="200">
+                    <p>
+                       Debugging adalah kemampuan mencari dan memperbaiki kesalahan atau
+                       bug pada aplikasi. Skill ini
+                       penting agar aplikasi dapat berjalan sesuai dengan yang diharapkan.
+                    </p>
+                </div>  
+
+                <div class="card">
+                    <img src="Solution.jpg" alt="Ilustrasi Testing" width="300" height="200">
+                    <p>
+                       Problem Solving adalah kemampuan mencari solusi ketika menghadapi masalah dalam
+                       proses pembuatan aplikasi. Developer perlu
+                       menganalisis masalah dan menentukan langkah yang tepat untuk menyelesaikannya.
+                    </p>
+                </div>  
+            </div>
+        </section>
+
+
+        <!-- Bagian Tools & Teknologi -->
+        <section id="tools">
+            <h2 class="section-title">Tools & Teknologi</h2>
+
+            <div class="cardss">
+                <div class="card">
+                    <h3>Android Studio</h3>
+                    <p>
+                        Android Studio adalah IDE resmi untuk mengembangkan aplikasi Android.
+                    </p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXHPqc4W3K3GcWnTx8WkXU8Sv-BRN9I6BM7f88RGu1ig&s=10" alt="Android Studio" width="100" height="100">
+                </div>
+
+                <div class="card">
+                    <h3>Xcode</h3>
+                    <p>
+                        Xcode adalah IDE resmi untuk mengembangkan aplikasi iOS.
+                    </p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPZubLBNbDz0TNrujeDUy4qFrxboQ5q-na_wCO7CHAjA&s=10" alt="Xcode" width="100" height="100">
+                </div>
+
+                <div class="card">
+                    <h3>Flutter</h3>
+                    <p>
+                        Flutter adalah framework open-source yang digunakan untuk membuat aplikasi mobile, web, dan desktop.
+                    </p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSFoHmk2tXChMnMktY9elqXYdFMHryRFnr9RhEgKR7hA&s=10" alt="Flutter" width="100" height="100">
+                </div>
+
+                <div class="card">
+                    <h3>React Native</h3>
+                    <p>
+                        React Native adalah framework open-source yang memungkinkan pengembangan aplikasi mobile menggunakan JavaScript dan React.
+                    </p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZoHXu9r19UIOR3pcOGGZnRQbaWkpMV3Cn9X38zIkUyg&s=10" alt="React Native" width="100" height="100">
+                </div>
+
+                <div class="card">
+                    <h3>Firebase</h3>
+                    <p>
+                        Firebase adalah platform pengembangan aplikasi yang menyediakan berbagai layanan seperti database, autentikasi, dan analitik.
+                    </p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLGQ3T_LrHy6V6EfYI9fq7Akpwm33JGz0qrlHvdoBGfQ&s=10" alt="Firebase" width="100" height="100">
+                </div>
+
+                <div class="card">
+                    <h3>Git</h3>
+                    <p>
+                        Git adalah sistem kontrol versi yang digunakan untuk melacak perubahan dalam kode sumber selama pengembangan perangkat lunak.
+                    </p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkz_1LLnlNKBkSAHMLNnFZtRN4obb2QsD3V9remQeeuQ&s=10" alt="Git" width="100" height="100">
+                </div>
+
+                <div class="card">
+                    <h3>Kotlin</h3>
+                    <p>
+                        Kotlin adalah bahasa pemrograman yang digunakan untuk mengembangkan aplikasi Android.
+                    </p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjJRp69cEmW8aiZLWmjN3oj95S6Grp4_D2-h8EvXTOAA&s=10" alt="Android Studio" width="100" height="100">
+                </div>
+                
+                <div class="card">
+                    <h3>Swift</h3>
+                    <p>
+                        Swift adalah bahasa pemrograman yang digunakan untuk mengembangkan aplikasi iOS.
+                    </p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeRb4vMx6OImIxNvVikZKm8JSF4H6blX9fRCldH783EQ&s=10" alt="Android Studio" width="100" height="100">
+                </div>
+
+                <div class="card">
+                    <h3>Figma</h3>
+                    <p>
+                        Figma adalah tools desain yang digunakan untuk membuat rancangan
+                         tampilan dan prototype aplikasi sebelum aplikasi tersebut dibuat.
+                    </p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSebpk8AZpGklpMqMbMCXQpWGixkL-liIf5zJyvzhaYsg&s=10" alt="Android Studio" width="100" height="100">
+                </div>
+
+                <div class="card">
+                    <h3>Visual Studio Code</h3>
+                    <p>
+                        Visual Studio Code adalah code editor yang dapat digunakan untuk menulis dan mengedit kode. VS Code mendukung 
+                        berbagai bahasa dan framework untuk pengembangan aplikasi.
+                    </p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoffYpdb9Xg0YztJA3tLe8-YliSZXxZX47lW_xOIZsnQ&s=10" alt="Android Studio" width="100" height="100">
+                </div>
+
+                <div class="card">
+                    <h3>GitHub</h3>
+                    <p>
+                       GitHub adalah platform untuk menyimpan repository kode secara 
+                       online dan membantu developer bekerja sama dalam sebuah proyek.
+                    </p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSp1vjp5e60W1G_ckU836nbJOFw0PaJbctFI4l86yjNg&s=10" alt="Android Studio" width="100" height="100">
+                </div>
+
+                <div class="card">
+                    <h3>Dart</h3>
+                    <p>
+                       Dart adalah bahasa pemrograman yang digunakan oleh Flutter. Dart digunakan untuk membuat logika, tampilan, dan fitur dalam aplikasi Flutter
+                    </p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_Jbq1YmcDPPQonoE9yflO2p_a7mY0HkIavpmon78ofg&s" alt="Android Studio" width="100" height="100">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 BelajarWeb bersama Mr.Dz (semua akan menyenangkan).</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.querySelector("#menuToggle");
+        const menu = document.querySelector("#menu");
+
+        menuToggle.addEventListener("click", function () {
+            menu.classList.toggle("show");
+        });
+
+        const menuLinks = document.querySelectorAll(".menu a");
+
+        menuLinks.forEach(function (link) {
+            link.addEventListener("click", function () {
+                menuLinks.forEach(function (item) {
+                    item.classList.remove("active");
+                });
+
+                link.classList.add("active");
+                menu.classList.remove("show");
+            });
+        });
+    </script>
+
+</body>
+</html>
